@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "223509394828",
+    "project_id": "caveroartgallerytrip",
+    "storage_bucket": "caveroartgallerytrip.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223509394828:android:d32f02be097d52ddbad2a9",
+        "android_client_info": {
+          "package_name": "nl.dekennisloods.artgallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223509394828-d32q8ohq58iso47fd6hj9576l498pmp8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAX_f1f7kRbLgIWyghO8tQNh0FnJoVvoUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "223509394828-d32q8ohq58iso47fd6hj9576l498pmp8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "223509394828-5nmuanveffmo90mco1vrna2nun1md0p4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "nl.dekennisloods.artgallery"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

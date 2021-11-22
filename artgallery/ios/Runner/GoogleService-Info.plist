@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>223509394828-5nmuanveffmo90mco1vrna2nun1md0p4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.223509394828-5nmuanveffmo90mco1vrna2nun1md0p4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwyU4lxOxklvE2I4f7u6r1fjYakPWwyMo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>223509394828</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>nl.dekennisloods.artgallery</string>
+	<key>PROJECT_ID</key>
+	<string>caveroartgallerytrip</string>
+	<key>STORAGE_BUCKET</key>
+	<string>caveroartgallerytrip.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:223509394828:ios:cbcccd64d6778508bad2a9</string>
+</dict>
+</plist>
