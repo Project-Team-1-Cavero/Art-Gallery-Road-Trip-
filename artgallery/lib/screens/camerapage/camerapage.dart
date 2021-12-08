@@ -2,6 +2,7 @@ import 'package:artgallery/screens/home/homepage.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'imagerecog.dart';
 
 class cameraPage extends StatefulWidget {
   List<CameraDescription> cameras;
@@ -14,7 +15,7 @@ class cameraPage extends StatefulWidget {
 
 class _cameraPageState extends State<cameraPage> {
   late CameraController controler;
-  XFile? picurefile;
+  XFile? picturefile;
 
   @override
   void initState() {
@@ -99,5 +100,9 @@ class _cameraPageState extends State<cameraPage> {
     );
   }
 
-  void getImage() {}
+  void getImage() async {
+    picturefile = await controler.takePicture();
+    var outputs = findArtwork(picturefile);
+    print("image recog outputs:"); //${outputs}"); //![0]["label"]
+  }
 }
