@@ -1,3 +1,4 @@
+import 'package:artgallery/screens/art_page/main_art_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -153,7 +154,19 @@ class _artCardState extends State<artCard> {
               decoration: BoxDecoration(color: HexColor("#D5CEBF")),
               height: MediaQuery.of(context).size.height / 7.5,
               width: MediaQuery.of(context).size.width / 7,
-            )
+              child: MaterialButton(
+                child: const RotatedBox(
+                  quarterTurns: 3,
+                  child: Text(
+                    "MORE",
+                    style: TextStyle(fontSize: 25),
+                  )
+                  ),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => artPage()));
+                }, 
+              ),
+            ),
 
            ],
           ),
