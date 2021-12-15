@@ -1,4 +1,5 @@
 import 'package:artgallery/screens/camerapage/camerapage.dart';
+import 'package:artgallery/screens/gallery_page/main_gallery_page.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -54,7 +55,9 @@ class _homePageBareState extends State<homePageBare> {
                           width: MediaQuery.of(context).size.width / 3,
                           decoration: BoxDecoration(color: HexColor("#A1813D")),
                           child: MaterialButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => galleryPage()));
+                            },
                             child: Text(
                               "Gallery",
                               style: TextStyle(fontSize: 25),
