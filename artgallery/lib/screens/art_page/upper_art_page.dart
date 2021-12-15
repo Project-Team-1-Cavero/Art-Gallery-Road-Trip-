@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class upperArtPage extends StatefulWidget {
 
@@ -14,6 +15,25 @@ class upperArtPage extends StatefulWidget {
 }
 
 class _upperArtPageState extends State<upperArtPage> {
+  videoLink() async {
+    try {
+      await launch("https://" + widget.artpice["VideoLink"]);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Buylink() async {
+    try {
+      await launch("https://" + widget.artpice["BuyLink"]);
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -260,7 +280,7 @@ class _upperArtPageState extends State<upperArtPage> {
                       height: MediaQuery.of(context).size.height / 17,
                       decoration: BoxDecoration(color: HexColor("#D5CEBF")),
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {videoLink();},
                         child: Text("Video", style: TextStyle(fontSize: 20),),
                       ),
                     ),
@@ -277,7 +297,7 @@ class _upperArtPageState extends State<upperArtPage> {
                       height: MediaQuery.of(context).size.height / 17,
                       decoration: BoxDecoration(color: HexColor("#D5CEBF")),
                       child: MaterialButton(
-                        onPressed: () {},
+                        onPressed: () {Buylink();},
                         child: Text("Kopen", style: TextStyle(fontSize: 20),),
                       ),
                     ),
