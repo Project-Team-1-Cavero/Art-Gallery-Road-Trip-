@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:share_plus/share_plus.dart';
 
 class upperArtPage extends StatefulWidget {
 
@@ -77,7 +78,12 @@ class _upperArtPageState extends State<upperArtPage> {
                   Container(
                     width: MediaQuery.of(context).size.width / 7,
                     height: MediaQuery.of(context).size.height / 15,
-                    decoration: BoxDecoration(color: Colors.black),
+                    
+                    child: IconButton(
+                      onPressed: () {
+                        },
+                      icon: Icon(Icons.thumb_up, size: 45, color: HexColor("#A1813D"),),
+                    ),
                   ),
                   Text("${widget.artpice["Likes"].toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
                 ],
@@ -95,7 +101,11 @@ class _upperArtPageState extends State<upperArtPage> {
                   Container(
                     width: MediaQuery.of(context).size.width / 7,
                     height: MediaQuery.of(context).size.height / 15,
-                    decoration: BoxDecoration(color: Colors.black),
+                    child: IconButton(
+                      onPressed: () {
+                        },
+                      icon: Icon(Icons.thumb_down,size: 45, color: HexColor("#A1813D"),),
+                    ),
                   ),
                   Text("${widget.artpice["Dislikes"].toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
                 ],
@@ -109,11 +119,16 @@ class _upperArtPageState extends State<upperArtPage> {
 
               //column for Share
               Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width / 7,
                     height: MediaQuery.of(context).size.height / 15,
-                    decoration: BoxDecoration(color: Colors.black),
+                    child: IconButton(
+                      onPressed: () async { await Share.share('check out my website https://example.com');},
+                      icon: Icon(Icons.share, size: 45, color: HexColor("#A1813D"),),
+                    ),
                   ),
                   Text("Share", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
                 ],
