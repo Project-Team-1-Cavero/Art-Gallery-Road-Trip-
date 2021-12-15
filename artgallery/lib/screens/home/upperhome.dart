@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class upperHome extends StatefulWidget {
   upperHome({Key? key}) : super(key: key);
@@ -9,6 +10,14 @@ class upperHome extends StatefulWidget {
 }
 
 class _upperHomeState extends State<upperHome> {
+  DeLoodsWebsite() async {
+    try {
+      await launch("https://cavero.nl/de-loods/");
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -45,9 +54,11 @@ class _upperHomeState extends State<upperHome> {
                 color: HexColor("#A1813D"),
                 borderRadius: BorderRadius.circular(40)),
             child: MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                DeLoodsWebsite();
+              },
               child: Text(
-                "Naar de loods\nWepsite",
+                "Naar de loods\nWebsite",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20),
               ),
