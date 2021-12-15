@@ -346,7 +346,7 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - camera (0.0.1):
     - Flutter
-  - cloud_firestore (3.1.4):
+  - cloud_firestore (3.1.2):
     - Firebase/Firestore (= 8.9.0)
     - firebase_core
     - Flutter
@@ -358,10 +358,10 @@ PODS:
   - Firebase/Storage (8.9.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 8.9.0)
-  - firebase_core (1.10.5):
+  - firebase_core (1.10.3):
     - Firebase/CoreOnly (= 8.9.0)
     - Flutter
-  - firebase_storage (10.2.3):
+  - firebase_storage (10.2.1):
     - Firebase/Storage (= 8.9.0)
     - firebase_core
     - Flutter
@@ -491,10 +491,10 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
-  cloud_firestore: c978a55e0bfc675cdc2291ef7670a69695cc663a
+  cloud_firestore: 7af7b361624a1d137c214d552fc09465995ae182
   Firebase: 13d8d96499e2635428d5bf0ec675df21f95d9a95
-  firebase_core: dfcae4c150a5e24436a0b7677c470478a234d5bf
-  firebase_storage: 41d59adeff37c548e167ecbfa834d2d038e6ad87
+  firebase_core: c09de176bd168c2a1c57b3e5f9f0ac72b0f667b9
+  firebase_storage: a200fbba38374495cad9e2c46f0e2c2f3b639123
   FirebaseCore: 599ee609343eaf4941bd188f85e3aa077ffe325b
   FirebaseCoreDiagnostics: 5daa63f1c1409d981a2d5007daa100b36eac6a34
   FirebaseFirestore: 15ae9648476436efed698a909e44c4737498f9b4
@@ -513,6 +513,6 @@ SPEC CHECKSUMS:
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
   url_launcher_ios: 02f1989d4e14e998335b02b67a7590fa34f971af
 
-PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+PODFILE CHECKSUM: 1f88c9fa7794883b1d6bbc0598d37810b26b105e
 
 COCOAPODS: 1.11.2
