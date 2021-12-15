@@ -4,6 +4,8 @@ import 'package:artgallery/screens/gallery_page/gallery_page_widgets/art_card.da
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+import 'gallery_page_subsetions/upper_gallery_page.dart';
+
 class galleryPage extends StatefulWidget {
   galleryPage({Key? key}) : super(key: key);
 
@@ -25,7 +27,8 @@ class _galleryPageState extends State<galleryPage> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height /5,
-              decoration: BoxDecoration(color: Colors.red),
+              decoration: BoxDecoration(color: HexColor("#385051")),
+              child: galleryHeader(),
             ),
             Container(
               width: MediaQuery.of(context).size.width,

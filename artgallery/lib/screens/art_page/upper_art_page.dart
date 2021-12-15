@@ -1,9 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class upperArtPage extends StatefulWidget {
-  upperArtPage({Key? key}) : super(key: key);
+
+  final QueryDocumentSnapshot<Object?> artpice;
+  upperArtPage(this.artpice);
 
   @override
   _upperArtPageState createState() => _upperArtPageState();
@@ -55,7 +59,7 @@ class _upperArtPageState extends State<upperArtPage> {
                     height: MediaQuery.of(context).size.height / 15,
                     decoration: BoxDecoration(color: Colors.black),
                   ),
-                  Text("10", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
+                  Text("${widget.artpice["Likes"].toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
                 ],
               ),
 
@@ -73,7 +77,7 @@ class _upperArtPageState extends State<upperArtPage> {
                     height: MediaQuery.of(context).size.height / 15,
                     decoration: BoxDecoration(color: Colors.black),
                   ),
-                  Text("9", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
+                  Text("${widget.artpice["Dislikes"].toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
                 ],
               ),
 
@@ -127,9 +131,9 @@ class _upperArtPageState extends State<upperArtPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [
-                Text("Name", style: TextStyle(fontSize: 40,color: HexColor("#A1813D")),),
+                Text(widget.artpice["Name"], style: TextStyle(fontSize: 40,color: HexColor("#A1813D")),),
                 Text(
-                  "Informatie over de stukje,\nKunstwerk, zoals over het\nGeschidenis", 
+                  widget.artpice["Info"], 
                   style: TextStyle(
                     fontSize: 20, 
                     color: HexColor("#A1813D"),
@@ -137,35 +141,149 @@ class _upperArtPageState extends State<upperArtPage> {
                   ),
                 ),
 
+                //Between spread
+                Container(
+                  height: MediaQuery.of(context).size.height / 100,
+                ),
+
 
                 Row(
                   children: [
 
+                    //Left padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 22,
+                      height: MediaQuery.of(context).size.height / 15,
+                    ),
+
                     //Artiest info
                     Column(
                       children: [
-                        Text("ARTIEST", style: TextStyle(fontSize: 25),),
-                        Text("Achraf Faress", style: TextStyle(fontSize: 15),)
+                        Text("ARTIEST", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),),
+                        Text(widget.artpice["Artiest"], style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
                       ],
+                    ),
+
+                    //Left seconde padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 40,
+                      height: MediaQuery.of(context).size.height / 15,
+                    ),
+
+
+                    //Golden spliter
+                    Container(
+                      width: MediaQuery.of(context).size.width / 400,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(color: HexColor("#A1813D")),
+                    ),
+
+                    //therd seconde padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 40,
+                      height: MediaQuery.of(context).size.height / 15,
                     ),
 
                     //Jaar info
                     Column(
                       children: [
-                        Text("JAAR", style: TextStyle(fontSize: 25),),
-                        Text("2021", style: TextStyle(fontSize: 15),)
+                        Text("JAAR", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),),
+                        Text(widget.artpice["Year"], style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),)
                       ],
+                    ),
+
+                    //Right seconde padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 40,
+                      height: MediaQuery.of(context).size.height / 15,
+                    ),
+
+
+                    //Golden spliter
+                    Container(
+                      width: MediaQuery.of(context).size.width / 400,
+                      height: MediaQuery.of(context).size.height / 15,
+                      decoration: BoxDecoration(color: HexColor("#A1813D")),
+                    ),
+
+                    //therd Rigt padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 40,
+                      height: MediaQuery.of(context).size.height / 15,
                     ),
 
                     //Ruimte info
                     Column(
                       children: [
-                        Text("RUIMTE", style: TextStyle(fontSize: 25),),
-                        Text("B12", style: TextStyle(fontSize: 15),)
+                        Text("RUIMTE", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),),
+                        Text(widget.artpice["Room"], style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),)
                       ],
                     ),
+
                   ],
                 ),
+
+                //Between spread
+                Container(
+                  height: MediaQuery.of(context).size.height / 50,
+                ),
+
+                Row(
+                  children: [
+                    //Left padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 70,
+                      height: MediaQuery.of(context).size.height / 15,
+                    ),
+
+                    //Route buttom
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3.5,
+                      height: MediaQuery.of(context).size.height / 17,
+                      decoration: BoxDecoration(color: HexColor("#D5CEBF")),
+                      child: MaterialButton(
+                        onPressed: () {},
+                        child: Text("Route", style: TextStyle(fontSize: 20),),
+                      ),
+                    ),
+
+
+                    //Left seconde padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 40,
+                      height: MediaQuery.of(context).size.height / 15,
+                    ),
+
+                    //Video buttom
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3.5,
+                      height: MediaQuery.of(context).size.height / 17,
+                      decoration: BoxDecoration(color: HexColor("#D5CEBF")),
+                      child: MaterialButton(
+                        onPressed: () {},
+                        child: Text("Video", style: TextStyle(fontSize: 20),),
+                      ),
+                    ),
+
+                    //Left padding
+                    Container(
+                      width: MediaQuery.of(context).size.width / 40,
+                      height: MediaQuery.of(context).size.height / 15,
+                    ),
+
+                    //By buttom
+                    Container(
+                      width: MediaQuery.of(context).size.width / 3.5,
+                      height: MediaQuery.of(context).size.height / 17,
+                      decoration: BoxDecoration(color: HexColor("#D5CEBF")),
+                      child: MaterialButton(
+                        onPressed: () {},
+                        child: Text("Kopen", style: TextStyle(fontSize: 20),),
+                      ),
+                    ),
+
+                  ],
+                )
 
               ],)
             ],

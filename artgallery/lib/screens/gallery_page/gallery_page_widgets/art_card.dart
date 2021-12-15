@@ -163,7 +163,7 @@ class _artCardState extends State<artCard> {
                   )
                   ),
                 onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => artPage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => artPage(widget.artpice)));
                 }, 
               ),
             ),
