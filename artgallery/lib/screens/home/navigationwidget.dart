@@ -1,4 +1,5 @@
 import 'package:artgallery/screens/camerapage/camerapage.dart';
+import 'package:artgallery/screens/camerapage/scanqr.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -35,7 +36,7 @@ class _homePageBareState extends State<homePageBare> {
                               await availableCameras().then(
                                 (value) => Navigator.push(
                                   context, MaterialPageRoute(
-                                    builder: (context) => cameraPage(value)
+                                    builder: (context) => QrScannerPage()
                                   )
                                 )
                               );
