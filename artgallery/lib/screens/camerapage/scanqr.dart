@@ -164,7 +164,7 @@ class QrScanPageState extends State<QrScannerPage>{
     .then((QuerySnapshot querySnapshot) {
         querySnapshot.docs.forEach((doc) {
           print(doc["Name"]);
-          if(doc["Name"] == "Dream boad"){
+          if(qrcode == "Dream boad"){//doc["Name"]
             Navigator.push(context, MaterialPageRoute(builder: (context) => artPage(doc)));
               print("done");
           }
