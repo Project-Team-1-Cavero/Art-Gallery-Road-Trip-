@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:artgallery/screens/home/homepage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -16,7 +17,7 @@ class QrScanPageState extends State<QrScannerPage>{
   final Stream<QuerySnapshot> artPieces = FirebaseFirestore.instance.collection("ArtPieces").snapshots();
 
   final qrKey = GlobalKey(debugLabel: 'QR');
-
+  
   Barcode? qrcode;                     // resultaat van het scannen
   QRViewController? controller;
 
@@ -39,6 +40,7 @@ class QrScanPageState extends State<QrScannerPage>{
 
 
   Widget build(BuildContext context) {
+    var snapshot;
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -65,18 +67,41 @@ class QrScanPageState extends State<QrScannerPage>{
                         height: MediaQuery.of(context).size.height / 11,
                         width: MediaQuery.of(context).size.width / 25,
                       ),
+                      
                       Container(
                         height: MediaQuery.of(context).size.height / 11,
                         width: MediaQuery.of(context).size.width / 5,
                         decoration: BoxDecoration(color: HexColor("A1813D")),
                         child: MaterialButton(
                           onPressed: () {
-                            //controler.dispose();
+                            //controller.dispose();
                             Navigator.push(context, MaterialPageRoute(builder: (context) => homePage()));
                           },
                           child: Text("<", style: TextStyle(fontSize: 60),),
                         ),
-                      )
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height / 11,
+                        
+                        child: StreamBuilder<QuerySnapshot>(
+                          stream: artPieces,
+                          builder: (
+                            BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot
+                          ){
+                            final data = snapshot.requireData;
+                            for (int i = 0; i < data.docs.length; i += 1){
+                                if(qrcode!.code == data.docs[i]['Name']){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => artPage(data.docs[i])));
+                            }
+                            }
+                            
+                            return Text('');
+                          }
+                        )
+                          
+                        ),
+                      
                     ],
                   ),
                 )
@@ -103,12 +128,16 @@ class QrScanPageState extends State<QrScannerPage>{
           Positioned(top: 10, 
           child: buildOptionButtons()),
           Positioned(bottom: 10, 
-          child: artplace()),
+          child: buildResult()), // artplace()),//buildResult(),
           
         ],
+        
       ),
+      
     ),
+    
   );
+  
 
  Widget buildOptionButtons() =>Row(
    mainAxisSize: MainAxisSize.max,
@@ -145,34 +174,7 @@ class QrScanPageState extends State<QrScannerPage>{
       this.qrcode = qrcode;
     }));
   }
-   //Widget artplace() => QRView();
-   Widget artplace() =>MaterialButton(
    
-   child: Text("see"),
-     
-            
-     onPressed: () {
-
-           changepage() ;                       
-       
-     
-     });
-  void changepage(){
-    FirebaseFirestore.instance
-    .collection('artPieces')
-    .get()
-    .then((QuerySnapshot querySnapshot) {
-        querySnapshot.docs.forEach((doc) {
-          print(doc["Name"]);
-          if(qrcode == "Dream boad"){//doc["Name"]
-            Navigator.push(context, MaterialPageRoute(builder: (context) => artPage(doc)));
-              print("done");
-          }
-            
-        });
-    });
-    
-  }
 
 }
 
