@@ -15,7 +15,7 @@ class QrScannerPage extends StatefulWidget{
 
 class QrScanPageState extends State<QrScannerPage>{
   final Stream<QuerySnapshot> artPieces = FirebaseFirestore.instance.collection("ArtPieces").snapshots();
-
+  //late AsyncSnapshot<QuerySnapshot> snapshot;
   final qrKey = GlobalKey(debugLabel: 'QR');
   
   Barcode? qrcode;                     // resultaat van het scannen
@@ -82,20 +82,29 @@ class QrScanPageState extends State<QrScannerPage>{
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height / 11,
-                        
+                        width: MediaQuery.of(context).size.width / 3,
                         child: StreamBuilder<QuerySnapshot>(
                           stream: artPieces,
                           builder: (
                             BuildContext context,
-                            AsyncSnapshot<QuerySnapshot> snapshot
+                            AsyncSnapshot<QuerySnapshot<Object?>> snapshot
                           ){
+                            if (snapshot.hasError){
+                              return Text('error');
+                            }
+                            if (snapshot.connectionState == ConnectionState.waiting){
+                              return Text('');
+                            }
                             final data = snapshot.requireData;
-                            for (int i = 0; i < data.docs.length; i += 1){
+                            try{
+                            for (int i = 0; i < data.size; i += 1){
                                 if(qrcode!.code == data.docs[i]['Name']){
                                   Navigator.push(context, MaterialPageRoute(builder: (context) => artPage(data.docs[i])));
                             }
-                            }
                             
+                            }
+                            }
+                            catch (e){}
                             return Text('');
                           }
                         )
@@ -112,6 +121,7 @@ class QrScanPageState extends State<QrScannerPage>{
         ),
       ),
     );
+    
   }
   
      
@@ -128,7 +138,7 @@ class QrScanPageState extends State<QrScannerPage>{
           Positioned(top: 10, 
           child: buildOptionButtons()),
           Positioned(bottom: 10, 
-          child: buildResult()), // artplace()),//buildResult(),
+          child: buildResult()), 
           
         ],
         
