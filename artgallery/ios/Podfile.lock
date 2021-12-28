@@ -437,6 +437,10 @@ PODS:
   - qr_code_scanner (0.2.0):
     - Flutter
     - MTBBarcodeScanner
+  - share (0.0.1):
+    - Flutter
+  - share_plus (0.0.1):
+    - Flutter
   - url_launcher_ios (0.0.1):
     - Flutter
 
@@ -448,6 +452,8 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - hexcolor (from `.symlinks/plugins/hexcolor/ios`)
   - qr_code_scanner (from `.symlinks/plugins/qr_code_scanner/ios`)
+  - share (from `.symlinks/plugins/share/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -484,6 +490,10 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/hexcolor/ios"
   qr_code_scanner:
     :path: ".symlinks/plugins/qr_code_scanner/ios"
+  share:
+    :path: ".symlinks/plugins/share/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -511,6 +521,8 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   qr_code_scanner: bb67d64904c3b9658ada8c402e8b4d406d5d796e
+  share: 0b2c3e82132f5888bccca3351c504d0003b3b410
+  share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   url_launcher_ios: 02f1989d4e14e998335b02b67a7590fa34f971af
 
 PODFILE CHECKSUM: 1f88c9fa7794883b1d6bbc0598d37810b26b105e

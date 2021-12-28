@@ -1,3 +1,4 @@
+import 'package:artgallery/logic/firebase_storage.dart';
 import 'package:artgallery/screens/art_page/main_art_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,24 @@ class _artCardState extends State<artCard> {
               decoration: const BoxDecoration(color: Colors.black),
               height: MediaQuery.of(context).size.height / 7.5,
               width: MediaQuery.of(context).size.width / 3.125,
+              child: FutureBuilder(
+                future: FirebaseStorageService.getImage(context, widget.artpice["Artiest"] + widget.artpice["Name"]),
+                builder: (context, snapshot) {
+                  if(snapshot.connectionState == ConnectionState.done)
+                  {
+                    return Container(
+                      child: snapshot.data as Widget,
+                    );  
+                  }
+
+                  if(snapshot.connectionState == ConnectionState.waiting)
+                  {
+                    return CircularProgressIndicator();
+                  }
+
+                  return Text("No image");
+                },
+              ),
             ),
 
             // Info container
