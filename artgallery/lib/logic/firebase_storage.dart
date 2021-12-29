@@ -18,7 +18,7 @@ class FirebaseStorageService extends ChangeNotifier{
     await FirebaseStorageService.loadImage(context, imageName).then((value) {
       image = Image.network(
         value.toString(),
-        fit: BoxFit.scaleDown,
+
       );
     }
     );
