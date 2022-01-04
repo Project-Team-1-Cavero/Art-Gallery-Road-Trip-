@@ -15,7 +15,7 @@ class _gallerListState extends State<gallerList> {
   //Art pieces data
   final Stream<QuerySnapshot> artPieces = FirebaseFirestore.instance.collection("ArtPieces").snapshots();
 
-
+  
 
   @override
   Widget build(BuildContext context) {

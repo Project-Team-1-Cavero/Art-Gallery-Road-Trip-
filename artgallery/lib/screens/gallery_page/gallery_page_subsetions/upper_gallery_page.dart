@@ -27,7 +27,7 @@ class _galleryHeaderState extends State<galleryHeader> {
               style: TextStyle(color: HexColor("#AD9F80"), fontWeight: FontWeight.bold, fontSize: 50 ),
             ),
             Container(
-              height: MediaQuery.of(context).size.height /20,
+              height: MediaQuery.of(context).size.height /40,
             ),
             Container(
               width: MediaQuery.of(context).size.width,
