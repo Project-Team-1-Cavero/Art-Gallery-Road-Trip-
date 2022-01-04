@@ -4,12 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:share_plus/share_plus.dart';
 
 class upperArtPage extends StatefulWidget {
 
-  final QueryDocumentSnapshot<Object?> artpice;
+  QueryDocumentSnapshot<Object?> artpice;
   upperArtPage(this.artpice);
 
   @override
@@ -17,6 +18,23 @@ class upperArtPage extends StatefulWidget {
 }
 
 class _upperArtPageState extends State<upperArtPage> {
+  
+  //Like and dislike data on device
+  bool isliked = false;
+  bool isDisliked = false;
+  int likeplus = 0;
+  int dislikeplus = 0;
+
+  //Staring up get data
+  @override
+  @override
+  void initState() {
+    super.initState();
+    getData();
+    
+  }
+
+  //Functions for using the links
   videoLink() async {
     try {
       await launch("https://" + widget.artpice["VideoLink"]);
@@ -33,7 +51,159 @@ class _upperArtPageState extends State<upperArtPage> {
     }
   }
 
+  //Getting the data from the device
+  getData() async {
+    SharedPreferences deviceData = await SharedPreferences.getInstance();
+    var islikedRaw = deviceData.getBool(widget.artpice["Name"] + "IsLiked");
+    var isDislikedRaw = deviceData.getBool(widget.artpice["Name"] + "IsDisliked");
 
+    if (islikedRaw == null)
+    {
+      isliked = false;
+    }
+    else if (islikedRaw == false)
+    {
+      isliked = false;
+    }
+    else{
+      isliked = true;
+    }
+
+    if (isDislikedRaw == null)
+    {
+      isDisliked = false;
+    }
+    else if (isDislikedRaw == false)
+    {
+      isDisliked = false;
+    }
+    else{
+      isDisliked = true;
+    }
+  }
+
+  //Store the data from the device
+  storeData(String type) async{
+    SharedPreferences deviceData = await SharedPreferences.getInstance();
+
+    if (type == "Like")
+    {
+      deviceData.setBool(widget.artpice["Name"] + "IsLiked", isliked);
+    }
+    else
+    {
+      deviceData.setBool(widget.artpice["Name"] + "IsDisliked", isDisliked);
+    }
+  }
+
+  likePiece(String type) async {
+    if (type == "Like")
+    {
+      if (isliked == false && isDisliked == false) {
+        QuerySnapshot snapshot = await FirebaseFirestore.instance.collection("ArtPieces")
+        .where("Name" , isEqualTo: widget.artpice["Name"])
+        .where("Year", isEqualTo: widget.artpice["Year"])
+        .get();
+                            
+
+        print(snapshot.docs.length);
+        if (snapshot.docs.isNotEmpty)
+        {
+          snapshot.docs.forEach((element) {
+          element.reference.update({"Likes": FieldValue.increment(1)});
+          isliked = true;
+          storeData("Like");
+        });
+        }
+        else{
+          print("Did not work");
+        }
+        setState(() {
+          likeplus++;
+        });
+      }
+      else if (isliked == true && isDisliked == false)
+      {
+        QuerySnapshot snapshot = await FirebaseFirestore.instance.collection("ArtPieces")
+        .where("Name" , isEqualTo: widget.artpice["Name"])
+        .where("Year", isEqualTo: widget.artpice["Year"])
+        .get();
+                            
+
+        print(snapshot.docs.length);
+        if (snapshot.docs.isNotEmpty)
+        {
+          snapshot.docs.forEach((element) {
+          element.reference.update({"Likes": FieldValue.increment(-1)});
+          isliked = false;
+          storeData("Like");
+        });
+        }
+        else{
+          print("Did not work");
+        }
+        setState(() {
+          likeplus--;
+        });
+
+      }
+
+    }
+
+    else if (type == "Dislike")
+    {
+      if (isliked == false && isDisliked == false) {
+        QuerySnapshot snapshot = await FirebaseFirestore.instance.collection("ArtPieces")
+        .where("Name" , isEqualTo: widget.artpice["Name"])
+        .where("Year", isEqualTo: widget.artpice["Year"])
+        .get();
+                            
+
+        print(snapshot.docs.length);
+        if (snapshot.docs.isNotEmpty)
+        {
+          snapshot.docs.forEach((element) {
+          element.reference.update({"Dislikes": FieldValue.increment(1)});
+          isDisliked = true;
+          storeData("Dislike");
+        });
+        }
+        else{
+          print("Did not work");
+        }
+        setState(() {
+          dislikeplus++;
+        });
+      }
+      else if (isliked == false && isDisliked == true)
+      {
+        QuerySnapshot snapshot = await FirebaseFirestore.instance.collection("ArtPieces")
+        .where("Name" , isEqualTo: widget.artpice["Name"])
+        .where("Year", isEqualTo: widget.artpice["Year"])
+        .get();
+                            
+
+        print(snapshot.docs.length);
+        if (snapshot.docs.isNotEmpty)
+        {
+          snapshot.docs.forEach((element) {
+          element.reference.update({"Dislikes": FieldValue.increment(-1)});
+          isDisliked = false;
+          storeData("Dislike");
+        });
+        }
+        else{
+          print("Did not work");
+        }
+        setState(() {
+          dislikeplus--;
+        });
+
+      }
+
+    }
+
+  }
 
 
   @override
@@ -99,12 +269,13 @@ class _upperArtPageState extends State<upperArtPage> {
                     height: MediaQuery.of(context).size.height / 15,
                     
                     child: IconButton(
-                      onPressed: () {
+                      onPressed: () async {
+                          likePiece("Like");
                         },
                       icon: Icon(Icons.thumb_up, size: 45, color: HexColor("#A1813D"),),
                     ),
                   ),
-                  Text("${widget.artpice["Likes"].toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
+                  Text("${(widget.artpice["Likes"] + likeplus).toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
                 ],
               ),
 
@@ -122,11 +293,12 @@ class _upperArtPageState extends State<upperArtPage> {
                     height: MediaQuery.of(context).size.height / 15,
                     child: IconButton(
                       onPressed: () {
+                          likePiece("Dislike");
                         },
                       icon: Icon(Icons.thumb_down,size: 45, color: HexColor("#A1813D"),),
                     ),
                   ),
-                  Text("${widget.artpice["Dislikes"].toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
+                  Text("${(widget.artpice["Dislikes"] + dislikeplus ).toString()}", style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),)
                 ],
               ),
 
