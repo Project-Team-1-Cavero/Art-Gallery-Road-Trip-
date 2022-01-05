@@ -3,7 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 
 class Route extends StatelessWidget {
   String gebouw = "";
-  int etage = 0;
+  String etage = "";
   String kamer = "";
 
   Route(artpiece) {
