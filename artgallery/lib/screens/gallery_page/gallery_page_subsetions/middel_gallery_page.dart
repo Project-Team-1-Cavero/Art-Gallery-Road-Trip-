@@ -2,7 +2,6 @@ import 'package:artgallery/screens/gallery_page/gallery_page_widgets/art_card.da
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class gallerList extends StatefulWidget {
   gallerList({Key? key}) : super(key: key);
 
@@ -11,24 +10,21 @@ class gallerList extends StatefulWidget {
 }
 
 class _gallerListState extends State<gallerList> {
-
   //Art pieces data
-  final Stream<QuerySnapshot> artPieces = FirebaseFirestore.instance.collection("ArtPieces").snapshots();
-
-  
+  final Stream<QuerySnapshot> artPieces =
+      FirebaseFirestore.instance.collection("ArtPieces").snapshots();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: StreamBuilder<QuerySnapshot>(stream: artPieces, builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) 
-      {
-        if (snapshot.hasError)
-        {
-          return Text("There was a erro");
+        child: StreamBuilder<QuerySnapshot>(
+      stream: artPieces,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text("There was a error");
         }
 
-        if (snapshot.connectionState == ConnectionState.waiting)
-        {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: CircularProgressIndicator(),
           );
@@ -39,9 +35,7 @@ class _gallerListState extends State<gallerList> {
         return ListView.builder(
           itemCount: data.size,
           itemBuilder: (BuildContext context, int index) {
-            if (data.docs[index] != null)
-            {
-
+            if (data.docs[index] != null) {
               var artpiece = data.docs[index];
               return artCard(artpiece);
             }
@@ -49,8 +43,7 @@ class _gallerListState extends State<gallerList> {
             return Text("Something went wrong");
           },
         );
-
-      },)
-    );
+      },
+    ));
   }
 }
