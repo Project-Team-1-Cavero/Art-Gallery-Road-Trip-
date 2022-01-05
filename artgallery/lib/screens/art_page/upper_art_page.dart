@@ -185,58 +185,24 @@ class _upperArtPageState extends State<upperArtPage> {
                 height: MediaQuery.of(context).size.height / 25,
               ),
 
-              //column for like
-              Column(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width / 7,
-                    height: MediaQuery.of(context).size.height / 15,
-                    child: IconButton(
-                      onPressed: () async {
-                        likePiece("Like");
-                      },
-                      icon: Icon(
-                        Icons.thumb_up,
-                        size: 45,
-                        color: HexColor("#A1813D"),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "${(widget.artpice["Likes"] + likeplus).toString()}",
-                    style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),
-                  )
-                ],
-              ),
-
-              //left second padding
+              //Picture container
               Container(
-                width: MediaQuery.of(context).size.width / 6,
-                height: MediaQuery.of(context).size.height / 15,
-              ),
-
-              //column for dislike
-              Column(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width / 7,
-                    height: MediaQuery.of(context).size.height / 15,
-                    child: IconButton(
-                      onPressed: () {
-                        likePiece("Dislike");
-                      },
-                      icon: Icon(
-                        Icons.thumb_down,
-                        size: 45,
-                        color: HexColor("#A1813D"),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    "${(widget.artpice["Dislikes"] + dislikeplus).toString()}",
-                    style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),
-                  )
-                ],
+                child: FutureBuilder(
+                  future: FirebaseStorageService.getImage(context,
+                      widget.artpice["Artiest"] + widget.artpice["Name"]),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return Container(
+                        width: MediaQuery.of(context).size.width / 1.1,
+                        child: snapshot.data as Widget,
+                      );
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    }
+                    return Text("No image");
+                  },
+                ),
               ),
 
               //between picture and like padding
@@ -260,7 +226,9 @@ class _upperArtPageState extends State<upperArtPage> {
                         width: MediaQuery.of(context).size.width / 7,
                         height: MediaQuery.of(context).size.height / 15,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            likePiece("Like");
+                          },
                           icon: Icon(
                             Icons.thumb_up,
                             size: 45,
@@ -269,7 +237,7 @@ class _upperArtPageState extends State<upperArtPage> {
                         ),
                       ),
                       Text(
-                        "${widget.artpice["Likes"].toString()}",
+                        "${(widget.artpice["Likes"] + likeplus).toString()}",
                         style:
                             TextStyle(fontSize: 25, color: HexColor("#A1813D")),
                       )
@@ -289,7 +257,9 @@ class _upperArtPageState extends State<upperArtPage> {
                         width: MediaQuery.of(context).size.width / 7,
                         height: MediaQuery.of(context).size.height / 15,
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            likePiece("Dislike");
+                          },
                           icon: Icon(
                             Icons.thumb_down,
                             size: 45,
@@ -298,7 +268,7 @@ class _upperArtPageState extends State<upperArtPage> {
                         ),
                       ),
                       Text(
-                        "${widget.artpice["Dislikes"].toString()}",
+                        "${(widget.artpice["Dislikes"] + dislikeplus).toString()}",
                         style:
                             TextStyle(fontSize: 25, color: HexColor("#A1813D")),
                       )
