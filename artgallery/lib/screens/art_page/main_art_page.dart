@@ -22,7 +22,7 @@ class _artPageState extends State<artPage> {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: HexColor("#385051")),
         child: Column(
-          children: [upperArtPage(widget.artpice),artPageNavigation()],
+          children: [upperArtPage(widget.artpice),artPageNavigation(widget.artpice)],
         ),
       ),
     );;

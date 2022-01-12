@@ -44,8 +44,7 @@ class _cameraPageState extends State<cameraPage> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: HexColor("#385051")),
-        child: Stack(
-          children: [
+        child: 
             Column(
               children: [
                 Container(
@@ -55,7 +54,7 @@ class _cameraPageState extends State<cameraPage> {
                   child: CameraPreview(controler),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery.of(context).size.height / 8,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Colors.white),
                   child: Row(
@@ -81,25 +80,8 @@ class _cameraPageState extends State<cameraPage> {
                 )
               ],
             ),
-            Positioned(
-              left: MediaQuery.of(context).size.width / 2.5,
-              top: MediaQuery.of(context).size.height / 1.33,
-              child: Container(
-                height: MediaQuery.of(context).size.height / 11,
-                width: MediaQuery.of(context).size.width / 5,
-                decoration: BoxDecoration(color: HexColor("A1813D")),
-                child: IconButton(
-                  splashColor: Colors.white,
-                  splashRadius: 20,
-                  iconSize: 45,
-                  onPressed: () {}, 
-                  icon: Icon(Icons.camera_alt)),
-              )
-            )
             
-          ],
         ),
-      ),
-    );
+      );
   }
 }

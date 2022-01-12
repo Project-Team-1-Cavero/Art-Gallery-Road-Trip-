@@ -32,7 +32,7 @@ class _galleryPageState extends State<galleryPage> {
             ),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 1.67,
+              height: MediaQuery.of(context).size.height / 1.481481481481481,
               child: gallerList(),
             ),
             galleryNavigation()

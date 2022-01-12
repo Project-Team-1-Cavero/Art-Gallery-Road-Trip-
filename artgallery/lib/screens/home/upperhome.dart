@@ -21,7 +21,7 @@ class _upperHomeState extends State<upperHome> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height / 1.25,
+      height: MediaQuery.of(context).size.height / 1.142857142857143,
       width: MediaQuery.of(context).size.width,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,

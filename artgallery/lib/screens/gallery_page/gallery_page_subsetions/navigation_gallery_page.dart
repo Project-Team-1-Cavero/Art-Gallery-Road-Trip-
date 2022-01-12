@@ -15,7 +15,7 @@ class _galleryNavigationState extends State<galleryNavigation> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height /5,
+      height: MediaQuery.of(context).size.height /8,
       decoration: BoxDecoration(color: Colors.white),
       child: Row(
         children: [

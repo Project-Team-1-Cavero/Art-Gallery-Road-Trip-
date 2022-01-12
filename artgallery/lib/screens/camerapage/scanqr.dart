@@ -51,14 +51,14 @@ class QrScanPageState extends State<QrScannerPage>{
             Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 1.25,
+                  height: MediaQuery.of(context).size.height / 1.142857142857143,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Colors.yellow),
                   child: builder(context),
                   
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery.of(context).size.height / 8,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Colors.white),
                   child: Row(

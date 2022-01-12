@@ -16,15 +16,15 @@ class _homePageBareState extends State<homePageBare> {
   @override
   Widget build(BuildContext context) {
     return Container(
-                height: MediaQuery.of(context).size.height / 5,
+                height: MediaQuery.of(context).size.height / 8,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(25),
+                  
                 ),
                 child: Column(
                   children: [
-                    Container(height: MediaQuery.of(context).size.height / 28,),
+                    Container(height: MediaQuery.of(context).size.height / 100,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -67,10 +67,7 @@ class _homePageBareState extends State<homePageBare> {
                         )
                       ],
                     ),
-                    Container(
-                      padding: EdgeInsets.only(top: 10),
-                      child: Text("Powered by Cavero"),
-                    )
+                 
                   ],
                 ),
               );
