@@ -7,6 +7,7 @@ class Route extends StatelessWidget {
   String kamer = "";
 
   Route(artpiece) {
+    //Info van kunstwerk wordt ingeladen
     gebouw = artpiece[2];
     etage = artpiece[1];
     kamer = artpiece[0];
@@ -24,7 +25,7 @@ class Route extends StatelessWidget {
         children: [
           Spacer(),
           Text(
-            "Hier kunt u dit kunstwerk vinden:",
+            "Hier kunt u dit kunstwerk vinden:", //Pop-up waarin info wordt weergegeven
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
           ),
           Spacer(),
@@ -47,7 +48,8 @@ class Route extends StatelessWidget {
             decoration: BoxDecoration(color: HexColor("#D5CEBF")),
             child: MaterialButton(
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.of(context)
+                    .pop(); //Sluit de pop-up wanneer de gebruiker op "ok" klikt
               },
               child: Text(
                 "OK",

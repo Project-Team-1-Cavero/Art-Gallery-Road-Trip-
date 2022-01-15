@@ -4,5 +4,7 @@ import 'package:flutter/material.dart';
 
 class DialogHelper {
   static routeMessage(context, artpiece) => showDialog(
-      context: context, builder: (context) => routeWidget.Route(artpiece));
+      //Maakt een pop-up aan met de lay-out van route.dart
+      context: context,
+      builder: (context) => routeWidget.Route(artpiece));
 }
