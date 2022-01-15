@@ -6,23 +6,23 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:artgallery/screens/art_page/main_art_page.dart';
-class QrScannerPage extends StatefulWidget{
-  
+
+class QrScannerPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => QrScanPageState();
 }
 
-
-class QrScanPageState extends State<QrScannerPage>{
-  final Stream<QuerySnapshot> artPieces = FirebaseFirestore.instance.collection("ArtPieces").snapshots();
+class QrScanPageState extends State<QrScannerPage> {
+  final Stream<QuerySnapshot> artPieces =
+      FirebaseFirestore.instance.collection("ArtPieces").snapshots();
   //late AsyncSnapshot<QuerySnapshot> snapshot;
   final qrKey = GlobalKey(debugLabel: 'QR');
-  
-  Barcode? qrcode;                     // resultaat van het scannen
+
+  Barcode? qrcode; // resultaat van het scannen
   QRViewController? controller;
 
   @override
-  void dispose(){
+  void dispose() {
     controller?.dispose();
     super.dispose();
   }
@@ -37,8 +37,6 @@ class QrScanPageState extends State<QrScannerPage>{
     }
   }
 
-
-
   Widget build(BuildContext context) {
     var snapshot;
     return Scaffold(
@@ -51,11 +49,11 @@ class QrScanPageState extends State<QrScannerPage>{
             Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 1.142857142857143,
+                  height:
+                      MediaQuery.of(context).size.height / 1.142857142857143,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(color: Colors.yellow),
                   child: builder(context),
-                  
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height / 8,
@@ -67,7 +65,6 @@ class QrScanPageState extends State<QrScannerPage>{
                         height: MediaQuery.of(context).size.height / 11,
                         width: MediaQuery.of(context).size.width / 25,
                       ),
-                      
                       Container(
                         height: MediaQuery.of(context).size.height / 11,
                         width: MediaQuery.of(context).size.width / 5,
@@ -75,117 +72,106 @@ class QrScanPageState extends State<QrScannerPage>{
                         child: MaterialButton(
                           onPressed: () {
                             //controller.dispose();
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => homePage()));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => homePage()));
                           },
-                          child: Text("<", style: TextStyle(fontSize: 60),),
+                          child: Text(
+                            "<",
+                            style: TextStyle(fontSize: 60),
+                          ),
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height / 11,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: StreamBuilder<QuerySnapshot>(
-                          stream: artPieces,
-                          builder: (
-                            BuildContext context,
-                            AsyncSnapshot<QuerySnapshot<Object?>> snapshot
-                          ){
-                            if (snapshot.hasError){
-                              return Text('error');
-                            }
-                            if (snapshot.connectionState == ConnectionState.waiting){
-                              return Text('');
-                            }
-                            final data = snapshot.requireData;
-                            try{
-                            for (int i = 0; i < data.size; i += 1){
-                                if(qrcode!.code == data.docs[i]['Name']){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => artPage(data.docs[i])));
-                            }
-                            
-                            }
-                            }
-                            catch (e){}
-                            return Text('');
-                          }
-                        )
-                          
-                        ),
-                      
+                          height: MediaQuery.of(context).size.height / 11,
+                          width: MediaQuery.of(context).size.width / 3,
+                          child: StreamBuilder<QuerySnapshot>(
+                              stream: artPieces,
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QuerySnapshot<Object?>>
+                                      snapshot) {
+                                if (snapshot.hasError) {
+                                  return Text('error');
+                                }
+                                if (snapshot.connectionState ==
+                                    ConnectionState.waiting) {
+                                  return Text('');
+                                }
+                                final data = snapshot.requireData;
+                                try {
+                                  for (int i = 0; i < data.size; i += 1) {
+                                    if (qrcode!.code == data.docs[i]['Name']) {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  artPage(data.docs[i])));
+                                    }
+                                  }
+                                } catch (e) {}
+                                return Text('');
+                              })),
                     ],
                   ),
                 )
               ],
             ),
-            
           ],
         ),
       ),
     );
-    
   }
-  
-     
-     
-  
+
   //@override
   Widget builder(BuildContext context) => SafeArea(
-    child: Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          buildQrView(context),
-          
-          Positioned(top: 10, 
-          child: buildOptionButtons()),
-          Positioned(bottom: 10, 
-          child: buildResult()), 
-          
+        child: Scaffold(
+          body: Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              buildQrView(context),
+              Positioned(top: 10, child: buildOptionButtons()),
+              Positioned(bottom: 10, child: buildResult()),
+            ],
+          ),
+        ),
+      );
+
+  Widget buildOptionButtons() => Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          IconButton(
+            icon: const Icon(Icons.flash_off), // knop voor de zaklamp
+            onPressed: () async {
+              await controller?.toggleFlash(); // aan en uit zetten van zaklamp
+              setState(() {});
+            },
+          ),
         ],
-        
-      ),
-      
-    ),
-    
-  );
-  
+      );
 
- Widget buildOptionButtons() =>Row(
-   mainAxisSize: MainAxisSize.max,
-   mainAxisAlignment: MainAxisAlignment.center,
-   crossAxisAlignment: CrossAxisAlignment.center,
-   children: [
-     
-     IconButton(icon: const Icon(Icons.flash_off),       // knop voor de zaklamp
-     onPressed: () async {
-       await controller?.toggleFlash();                   // aan en uit zetten van zaklamp
-       setState(() {
-       });
-     },),
-   ],);
+  Widget buildResult() => Text(
+        qrcode != null
+            ? '${qrcode!.code}'
+            : 'Scan een code!', // resultaat van het scannen(welke text)
+      );
 
- Widget buildResult()=> Text(
-  qrcode != null ? '${qrcode!.code}' :'scan a code!',        // resultaat van het scannen(welke text)
-  
- );
+  Widget buildQrView(BuildContext context) => QRView(
+        key: qrKey,
+        onQRViewCreated: onQRViewCreated,
+        overlay: QrScannerOverlayShape(
+          cutOutSize: MediaQuery.of(context).size.width * 0.8,
+          borderWidth: 10,
+          borderColor: Theme.of(context).accentColor,
+        ),
+      );
 
-  Widget buildQrView(BuildContext context) => QRView( 
-    key: qrKey,
-    onQRViewCreated: onQRViewCreated,
-    overlay: QrScannerOverlayShape(
-      cutOutSize: MediaQuery.of(context).size.width * 0.8,
-      borderWidth: 10,
-      borderColor: Theme.of(context).accentColor,
-    ),
-    );
-
-  void onQRViewCreated(QRViewController controller){
+  void onQRViewCreated(QRViewController controller) {
     setState(() => this.controller = controller);
     controller.scannedDataStream.listen((qrcode) => setState(() {
-      this.qrcode = qrcode;
-    }));
+          this.qrcode = qrcode;
+        }));
   }
-   
-
 }
-
-

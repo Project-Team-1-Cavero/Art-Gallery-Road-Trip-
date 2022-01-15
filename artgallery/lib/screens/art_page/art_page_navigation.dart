@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class artPageNavigation extends StatefulWidget {
   QueryDocumentSnapshot<Object?> artpice;
 
@@ -24,7 +23,6 @@ class _artPageNavigationState extends State<artPageNavigation> {
 
   String likecolor = "#4A4949";
   String dislikeColor = "#4A4949";
-
 
   //Staring up get data
   @override
@@ -60,11 +58,9 @@ class _artPageNavigationState extends State<artPageNavigation> {
       dislikeColor = "#4A4949";
     } else {
       isDisliked = true;
-      dislikeColor = "A1813D"; 
+      dislikeColor = "A1813D";
     }
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   //Store the data from the device
@@ -136,7 +132,7 @@ class _artPageNavigationState extends State<artPageNavigation> {
           snapshot.docs.forEach((element) {
             element.reference.update({"Dislikes": FieldValue.increment(1)});
             isDisliked = true;
-            dislikeColor = "A1813D"; 
+            dislikeColor = "A1813D";
             storeData("Dislike");
           });
         } else {
@@ -170,103 +166,97 @@ class _artPageNavigationState extends State<artPageNavigation> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
-                height: MediaQuery.of(context).size.height / 8,
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
+      height: MediaQuery.of(context).size.height / 8,
+      width: MediaQuery.of(context).size.width,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: MediaQuery.of(context).size.height / 100,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height / 11,
+                width: MediaQuery.of(context).size.width / 3,
+                decoration: BoxDecoration(color: HexColor("#A1813D")),
+                child: MaterialButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => galleryPage()));
+                  },
+                  child: const Text(
+                    "Gallerij",
+                    style: TextStyle(fontSize: 25),
+                  ),
                 ),
-                child: Column(
-                  children: [
-                    Container(height: MediaQuery.of(context).size.height / 100,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height / 11,
-                          width: MediaQuery.of(context).size.width / 3,
-                          decoration: BoxDecoration(color: HexColor("#A1813D")),
-                          child: MaterialButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context, MaterialPageRoute(
-                                  builder: (context) => galleryPage()
-                                )
-                              );
-                            },
-                            child: const Text(
-                              "Gallery",
-                              style: TextStyle(fontSize: 25),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 6,
-                        ),
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 6,
+              ),
 
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 7,
-                              height: MediaQuery.of(context).size.height / 15,
-                              child: IconButton(
-                                onPressed: () async {
-                                  likePiece("Like");
-                                },
-                                icon: Icon(
-                                  Icons.thumb_up,
-                                  size: 45,
-                                  color: HexColor(likecolor),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "${(widget.artpice["Likes"] + likeplus).toString()}",
-                              style:
-                                  TextStyle(fontSize: 25, color: HexColor("#A1813D")),
-                            )
-                          ],
-                        ),
-
-                        //left second padding
-                        Container(
-                          width: MediaQuery.of(context).size.width / 15,
-                          height: MediaQuery.of(context).size.height / 15,
-                        ),
-
-                        //column for dislike
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 7,
-                              height: MediaQuery.of(context).size.height / 15,
-                              child: IconButton(
-                                onPressed: () {
-                                  likePiece("Dislike");
-                                },
-                                icon: Icon(
-                                  Icons.thumb_down,
-                                  size: 45,
-                                  color: HexColor(dislikeColor),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "${(widget.artpice["Dislikes"] + dislikeplus).toString()}",
-                              style:
-                                  TextStyle(fontSize: 25, color: HexColor("#A1813D")),
-                            )
-                          ],
-                        ),
-                        
-                      ],
+              Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width / 7,
+                    height: MediaQuery.of(context).size.height / 15,
+                    child: IconButton(
+                      onPressed: () async {
+                        likePiece("Like");
+                      },
+                      icon: Icon(
+                        Icons.thumb_up,
+                        size: 45,
+                        color: HexColor(likecolor),
+                      ),
                     ),
-                  ],
-                ),
-              );
+                  ),
+                  Text(
+                    "${(widget.artpice["Likes"] + likeplus).toString()}",
+                    style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),
+                  )
+                ],
+              ),
+
+              //left second padding
+              Container(
+                width: MediaQuery.of(context).size.width / 15,
+                height: MediaQuery.of(context).size.height / 15,
+              ),
+
+              //column for dislike
+              Column(
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width / 7,
+                    height: MediaQuery.of(context).size.height / 15,
+                    child: IconButton(
+                      onPressed: () {
+                        likePiece("Dislike");
+                      },
+                      icon: Icon(
+                        Icons.thumb_down,
+                        size: 45,
+                        color: HexColor(dislikeColor),
+                      ),
+                    ),
+                  ),
+                  Text(
+                    "${(widget.artpice["Dislikes"] + dislikeplus).toString()}",
+                    style: TextStyle(fontSize: 25, color: HexColor("#A1813D")),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

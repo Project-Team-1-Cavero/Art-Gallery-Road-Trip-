@@ -18,23 +18,29 @@ class _galleryHeaderState extends State<galleryHeader> {
         width: MediaQuery.of(context).size.width,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          
           children: [
             Container(
-              height: MediaQuery.of(context).size.height /17,
+              height: MediaQuery.of(context).size.height / 17,
             ),
-            Text("Gallery",
-              style: TextStyle(color: HexColor("#AD9F80"), fontWeight: FontWeight.bold, fontSize: 50 ),
+            Text(
+              "Gallerij",
+              style: TextStyle(
+                  color: HexColor("#AD9F80"),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 50),
             ),
             Container(
-              height: MediaQuery.of(context).size.height /40,
+              height: MediaQuery.of(context).size.height / 40,
             ),
             Container(
               width: MediaQuery.of(context).size.width,
               child: Row(
                 children: [
                   Container(width: MediaQuery.of(context).size.width / 15),
-                  Text("0 resulten", style: TextStyle(color: HexColor("#AD9F80")),),
+                  Text(
+                    "0 resultaten",
+                    style: TextStyle(color: HexColor("#AD9F80")),
+                  ),
                   Container(width: MediaQuery.of(context).size.width / 35),
                   Container(
                     width: MediaQuery.of(context).size.width / 1.5,
@@ -44,7 +50,6 @@ class _galleryHeaderState extends State<galleryHeader> {
                 ],
               ),
             )
-            
           ],
         ),
       ),
