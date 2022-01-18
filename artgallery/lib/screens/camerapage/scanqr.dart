@@ -102,12 +102,14 @@ class QrScanPageState extends State<QrScannerPage> {
                                 try {
                                   for (int i = 0; i < data.size; i += 1) {
                                     if (qrcode!.code == data.docs[i]['Name']) {// vergelijk qr-code met data uit database
+                                      Future.delayed(Duration.zero, (){
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   artPage(data.docs[i])));
-                                    }
+                                    });
+                                  }
                                   }
                                 } catch (e) {}
                                 return Text('');

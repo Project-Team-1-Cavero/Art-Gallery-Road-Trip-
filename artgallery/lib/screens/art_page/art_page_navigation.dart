@@ -187,7 +187,7 @@ class _artPageNavigationState extends State<artPageNavigation> {
                 width: MediaQuery.of(context).size.width / 3,
                 decoration: BoxDecoration(color: HexColor("#A1813D")),
                 child: MaterialButton(
-                  onPressed: () {
+                  onPressed: () { 
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => galleryPage()));
                   },
