@@ -43,6 +43,7 @@ class Route extends StatelessWidget {
           ),
           Spacer(),
           Container(
+            //Ok knop om de pop-up te sluiten
             width: MediaQuery.of(context).size.width / 3.5,
             height: MediaQuery.of(context).size.height / 17,
             decoration: BoxDecoration(color: HexColor("#D5CEBF")),
