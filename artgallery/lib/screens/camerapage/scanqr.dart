@@ -15,14 +15,14 @@ class QrScannerPage extends StatefulWidget {
 class QrScanPageState extends State<QrScannerPage> {
   final Stream<QuerySnapshot> artPieces =
       FirebaseFirestore.instance.collection("ArtPieces").snapshots();
-  //late AsyncSnapshot<QuerySnapshot> snapshot;
+  
   final qrKey = GlobalKey(debugLabel: 'QR');
-
+  
   Barcode? qrcode; // resultaat van het scannen
-  QRViewController? controller;
+  QRViewController? controller;// camera
 
   @override
-  void dispose() {
+  void dispose() {// dit zorgt voor het stoppen van de camera.
     controller?.dispose();
     super.dispose();
   }
@@ -71,8 +71,8 @@ class QrScanPageState extends State<QrScannerPage> {
                         decoration: BoxDecoration(color: HexColor("A1813D")),
                         child: MaterialButton(
                           onPressed: () {
-                            //controller.dispose();
-                            Navigator.push(
+                            //dispose();
+                            Navigator.push(//naar de volgende pagina gestuurd worden na het scannen
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => homePage()));
@@ -101,7 +101,7 @@ class QrScanPageState extends State<QrScannerPage> {
                                 final data = snapshot.requireData;
                                 try {
                                   for (int i = 0; i < data.size; i += 1) {
-                                    if (qrcode!.code == data.docs[i]['Name']) {
+                                    if (qrcode!.code == data.docs[i]['Name']) {// vergelijk qr-code met data uit database
                                       Navigator.push(
                                           context,
                                           MaterialPageRoute(
@@ -124,26 +124,28 @@ class QrScanPageState extends State<QrScannerPage> {
   }
 
   //@override
-  Widget builder(BuildContext context) => SafeArea(
+  Widget builder(BuildContext context) => SafeArea(//opmaakt van de qrscan widget.
         child: Scaffold(
           body: Stack(
             alignment: Alignment.center,
             children: <Widget>[
               buildQrView(context),
               Positioned(top: 10, child: buildOptionButtons()),
-              Positioned(bottom: 10, child: buildResult()),
+              //Positioned(bottom: 10, child: buildResult()),
             ],
           ),
         ),
       );
 
   Widget buildOptionButtons() => Row(
+    
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          IconButton(
-            icon: const Icon(Icons.flash_off), // knop voor de zaklamp
+          IconButton(// knop voor de zaklamp
+            icon: const Icon(Icons.flash_off),
+            color: Colors.white, 
             onPressed: () async {
               await controller?.toggleFlash(); // aan en uit zetten van zaklamp
               setState(() {});
@@ -155,10 +157,10 @@ class QrScanPageState extends State<QrScannerPage> {
   Widget buildResult() => Text(
         qrcode != null
             ? '${qrcode!.code}'
-            : 'Scan een code!', // resultaat van het scannen(welke text)
+            : 'Scan een code!', // resultaat van het scannen
       );
 
-  Widget buildQrView(BuildContext context) => QRView(
+  Widget buildQrView(BuildContext context) => QRView( // camera scherm decoratie
         key: qrKey,
         onQRViewCreated: onQRViewCreated,
         overlay: QrScannerOverlayShape(
@@ -168,7 +170,7 @@ class QrScanPageState extends State<QrScannerPage> {
         ),
       );
 
-  void onQRViewCreated(QRViewController controller) {
+  void onQRViewCreated(QRViewController controller) {//camera aanroepen
     setState(() => this.controller = controller);
     controller.scannedDataStream.listen((qrcode) => setState(() {
           this.qrcode = qrcode;
