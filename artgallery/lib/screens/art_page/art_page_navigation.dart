@@ -192,7 +192,7 @@ class _artPageNavigationState extends State<artPageNavigation> {
                         MaterialPageRoute(builder: (context) => galleryPage()));
                   },
                   child: const Text(
-                    "Gallerij",
+                    "Galerij",
                     style: TextStyle(fontSize: 25),
                   ),
                 ),

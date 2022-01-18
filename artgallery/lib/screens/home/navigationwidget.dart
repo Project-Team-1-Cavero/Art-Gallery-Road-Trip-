@@ -59,7 +59,7 @@ class _homePageBareState extends State<homePageBare> {
                         MaterialPageRoute(builder: (context) => galleryPage()));
                   },
                   child: Text(
-                    "Gallerij",
+                    "Galerij",
                     style: TextStyle(fontSize: 25),
                   ),
                 ),

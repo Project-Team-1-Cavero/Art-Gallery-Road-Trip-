@@ -23,7 +23,7 @@ class _galleryHeaderState extends State<galleryHeader> {
               height: MediaQuery.of(context).size.height / 17,
             ),
             Text(
-              "Gallerij",
+              "Galerij",
               style: TextStyle(
                   color: HexColor("#AD9F80"),
                   fontWeight: FontWeight.bold,
