@@ -18,6 +18,8 @@ class _homePageState extends State<homePage> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: HexColor("#385051")),
+
+        //De home page bestaat uit twee groter wisgts
         child: Column(
           children: [upperHome(), homePageBare()],
         ),

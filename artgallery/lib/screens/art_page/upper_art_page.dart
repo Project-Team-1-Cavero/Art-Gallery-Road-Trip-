@@ -62,7 +62,7 @@ class _upperArtPageState extends State<upperArtPage> {
                   height: MediaQuery.of(context).size.height / 15,
                   child: IconButton(
                     onPressed: () async {
-                      await Share.share('check out my website https://example.com');
+                      await Share.share('check out ${widget.artpice["Name"]} bij de ART Road Trip App');
                     },
                     icon: Icon(
                       Icons.share,

@@ -10,6 +10,8 @@ class upperHome extends StatefulWidget {
 }
 
 class _upperHomeState extends State<upperHome> {
+
+  //De functie gebruikt de launcher package, om de website op te starten
   DeLoodsWebsite() async {
     try {
       await launch("https://cavero.nl/de-loods/");
@@ -23,6 +25,8 @@ class _upperHomeState extends State<upperHome> {
     return Container(
       height: MediaQuery.of(context).size.height / 1.142857142857143,
       width: MediaQuery.of(context).size.width,
+
+      // Deze column beschikt over de afbeelding, link knop en tekst.
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -31,6 +35,8 @@ class _upperHomeState extends State<upperHome> {
                 EdgeInsets.only(top: MediaQuery.of(context).size.height / 20),
             width: MediaQuery.of(context).size.width / 2,
             height: MediaQuery.of(context).size.height / 5,
+
+            // De abeelding komt van de assets map
             child: Image(
               image: AssetImage("assets/loodslogo.png"),
             ),
@@ -47,6 +53,8 @@ class _upperHomeState extends State<upperHome> {
           Container(
             height: MediaQuery.of(context).size.height / 30,
           ),
+
+          // De knop runt de deloodswebsite functie, de functie bevindt zich aan het begin.
           Container(
             width: MediaQuery.of(context).size.width / 2,
             height: MediaQuery.of(context).size.height / 11,

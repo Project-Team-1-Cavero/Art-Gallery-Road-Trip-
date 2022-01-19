@@ -21,6 +21,8 @@ class _artPageState extends State<artPage> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: HexColor("#385051")),
+
+        //De Art page is verdeeld in twee groten widget, ze nemen beide artpiece object
         child: Column(
           children: [upperArtPage(widget.artpice),artPageNavigation(widget.artpice)],
         ),

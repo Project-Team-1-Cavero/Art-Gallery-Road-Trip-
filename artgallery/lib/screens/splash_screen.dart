@@ -1,6 +1,7 @@
 import 'package:artgallery/logic/authi.dart';
 import 'package:artgallery/screens/home/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 class splashScreen extends StatefulWidget {
   splashScreen({Key? key}) : super(key: key);
@@ -14,21 +15,27 @@ class _splashScreenState extends State<splashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        decoration: BoxDecoration(color: HexColor("#385051")),
         height:  MediaQuery.of(context).size.height,
         width:  MediaQuery.of(context).size.width,
+
+        //De sign in page knop, rund de signIn functie, om die client te authercaten in firebase.
         child: Center(
-          child: MaterialButton(
-            child: Text("Sign in"),
-            onPressed: () async {
-              dynamic result = await firebaseAuthService().signIN();
-              setState(() {
-                Navigator.push(
-                  context, 
-                  MaterialPageRoute(builder: (Context) => homePage())
-                  );
-              });
-            },
-            ),
+          child: Container(
+            decoration: BoxDecoration(color: HexColor("#A1813D")),
+            child: MaterialButton(
+              child: Text("Enter to world of ART"),
+              onPressed: () async {
+                dynamic result = await firebaseAuthService().signIN();
+                setState(() {
+                  Navigator.push(
+                    context, 
+                    MaterialPageRoute(builder: (Context) => homePage())
+                    );
+                });
+              },
+              ),
+          ),
         ),
       )
     );

@@ -23,6 +23,7 @@ class _galleryNavigationState extends State<galleryNavigation> {
             height: MediaQuery.of(context).size.height / 11,
             width: MediaQuery.of(context).size.width / 25,
           ),
+          //Knop naar de home back
           Container(
             height: MediaQuery.of(context).size.height / 11,
             width: MediaQuery.of(context).size.width / 5,
@@ -38,6 +39,8 @@ class _galleryNavigationState extends State<galleryNavigation> {
             height: MediaQuery.of(context).size.height / 11,
             width: MediaQuery.of(context).size.width / 10,
           ),
+
+          //Text aan de onderzijder van de homebar
           Text(
             "Tik op more voor\nmeer Informatie",
             style: TextStyle(

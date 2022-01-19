@@ -16,6 +16,8 @@ class _galleryHeaderState extends State<galleryHeader> {
       body: Container(
         decoration: BoxDecoration(color: HexColor("#385051")),
         width: MediaQuery.of(context).size.width,
+
+        // Collum beschikt over de header van de gallerij pagina
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -37,10 +39,14 @@ class _galleryHeaderState extends State<galleryHeader> {
               child: Row(
                 children: [
                   Container(width: MediaQuery.of(context).size.width / 15),
+<<<<<<< Updated upstream
                   Text(
                     "0 resultaten",
                     style: TextStyle(color: HexColor("#AD9F80")),
                   ),
+=======
+                  Text("Alle resulten", style: TextStyle(color: HexColor("#AD9F80")),),
+>>>>>>> Stashed changes
                   Container(width: MediaQuery.of(context).size.width / 35),
                   Container(
                     width: MediaQuery.of(context).size.width / 1.5,

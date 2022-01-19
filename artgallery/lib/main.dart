@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 Future<void> main() async {
+
+  //De volgende twee lines, zorgen ervoor dat er conntectie met firebase gemaakt kan worden.
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
   runApp(const MyApp());

@@ -7,11 +7,12 @@ class FirebaseStorageService extends ChangeNotifier{
 
 
 
-  //Getting the back the dynamic image
+  //Afbeelding downloaden van de database
   static Future<dynamic> loadImage(BuildContext context, String image) async {
     return await FirebaseStorage.instance.ref().child(image).getDownloadURL();
   }
 
+  //De dynamic afbeelding veranderen naar een afbeelding widget
   static Future<Widget> getImage(BuildContext context, String imageName) async {
     Image image = Image(image: AssetImage("assets/loodslogo.png"));
     

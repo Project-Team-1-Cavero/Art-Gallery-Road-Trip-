@@ -21,6 +21,8 @@ class _galleryPageState extends State<galleryPage> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(color: HexColor("#385051")), 
+
+        //Deze hme pagina bestaat uit twee groter widgets
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
