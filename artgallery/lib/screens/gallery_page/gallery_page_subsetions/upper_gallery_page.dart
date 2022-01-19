@@ -39,14 +39,10 @@ class _galleryHeaderState extends State<galleryHeader> {
               child: Row(
                 children: [
                   Container(width: MediaQuery.of(context).size.width / 15),
-<<<<<<< Updated upstream
                   Text(
-                    "0 resultaten",
+                    "Alle resulten",
                     style: TextStyle(color: HexColor("#AD9F80")),
                   ),
-=======
-                  Text("Alle resulten", style: TextStyle(color: HexColor("#AD9F80")),),
->>>>>>> Stashed changes
                   Container(width: MediaQuery.of(context).size.width / 35),
                   Container(
                     width: MediaQuery.of(context).size.width / 1.5,

@@ -78,9 +78,7 @@ class _artPageNavigationState extends State<artPageNavigation> {
   // De likepice pakt een string Like of Dislike, Het gebruikt ook de store functie om de data gelijk op te slaan.
   likePiece(String type) async {
     if (type == "Like") {
-
       if (isliked == false && isDisliked == false) {
-
         //De artpieces in de database vinden, en dat opslaan in de snapshot value
         QuerySnapshot snapshot = await FirebaseFirestore.instance
             .collection("ArtPieces")
@@ -105,7 +103,6 @@ class _artPageNavigationState extends State<artPageNavigation> {
           likeplus++;
         });
       } else if (isliked == true && isDisliked == false) {
-
         //De artpieces in de database vinden, en dat opslaan in de snapshot value
         QuerySnapshot snapshot = await FirebaseFirestore.instance
             .collection("ArtPieces")
@@ -193,12 +190,13 @@ class _artPageNavigationState extends State<artPageNavigation> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              //Knop die je terug brengt naar de gellerij
               Container(
                 height: MediaQuery.of(context).size.height / 11,
                 width: MediaQuery.of(context).size.width / 3,
                 decoration: BoxDecoration(color: HexColor("#A1813D")),
                 child: MaterialButton(
-                  onPressed: () { 
+                  onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => galleryPage()));
                   },
@@ -207,12 +205,12 @@ class _artPageNavigationState extends State<artPageNavigation> {
                     style: TextStyle(fontSize: 25),
                   ),
                 ),
-<<<<<<< Updated upstream
               ),
               Container(
                 width: MediaQuery.of(context).size.width / 6,
               ),
 
+              // Deze colume beschikt over de like knop, en de daarbij horend teller
               Column(
                 children: [
                   Container(
@@ -235,62 +233,6 @@ class _artPageNavigationState extends State<artPageNavigation> {
                   )
                 ],
               ),
-=======
-                child: Column(
-                  children: [
-                    Container(height: MediaQuery.of(context).size.height / 100,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-
-                        //Knop die je terug brengt naar de gellerij
-                        Container(
-                          height: MediaQuery.of(context).size.height / 11,
-                          width: MediaQuery.of(context).size.width / 3,
-                          decoration: BoxDecoration(color: HexColor("#A1813D")),
-                          child: MaterialButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context, MaterialPageRoute(
-                                  builder: (context) => galleryPage()
-                                )
-                              );
-                            },
-                            child: const Text(
-                              "Gallery",
-                              style: TextStyle(fontSize: 25),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 6,
-                        ),
-
-                        // Deze colume beschikt over de like knop, en de daarbij horend teller
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 7,
-                              height: MediaQuery.of(context).size.height / 15,
-                              child: IconButton(
-                                onPressed: () async {
-                                  likePiece("Like");
-                                },
-                                icon: Icon(
-                                  Icons.thumb_up,
-                                  size: 45,
-                                  color: HexColor(likecolor),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "${(widget.artpice["Likes"] + likeplus).toString()}",
-                              style:
-                                  TextStyle(fontSize: 25, color: HexColor("#A1813D")),
-                            )
-                          ],
-                        ),
->>>>>>> Stashed changes
 
               //left second padding
               Container(
@@ -298,8 +240,7 @@ class _artPageNavigationState extends State<artPageNavigation> {
                 height: MediaQuery.of(context).size.height / 15,
               ),
 
-<<<<<<< Updated upstream
-              //column for dislike
+              //column for dislike, met de teller gegevens
               Column(
                 children: [
                   Container(
@@ -314,34 +255,6 @@ class _artPageNavigationState extends State<artPageNavigation> {
                         size: 45,
                         color: HexColor(dislikeColor),
                       ),
-=======
-                        //column for dislike, met de teller gegevens
-                        Column(
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width / 7,
-                              height: MediaQuery.of(context).size.height / 15,
-                              child: IconButton(
-                                onPressed: () {
-                                  likePiece("Dislike");
-                                },
-                                icon: Icon(
-                                  Icons.thumb_down,
-                                  size: 45,
-                                  color: HexColor(dislikeColor),
-                                ),
-                              ),
-                            ),
-                            Text(
-                              "${(widget.artpice["Dislikes"] + dislikeplus).toString()}",
-                              style:
-                                  TextStyle(fontSize: 25, color: HexColor("#A1813D")),
-                            )
-                          ],
-                        ),
-                        
-                      ],
->>>>>>> Stashed changes
                     ),
                   ),
                   Text(
