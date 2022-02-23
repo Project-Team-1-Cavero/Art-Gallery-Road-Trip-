@@ -1,4 +1,3 @@
-import 'package:artgallery/screens/camerapage/textrecognision.dart';
 import 'package:artgallery/screens/home/homepage.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -15,8 +14,7 @@ class cameraPage extends StatefulWidget {
 
 class _cameraPageState extends State<cameraPage> {
   late CameraController controler;                               
-  XFile? picurefile;       
-  String outputString = "Test";
+  XFile? picurefile;                                          
 
   @override
   void initState()                                        
@@ -77,8 +75,7 @@ class _cameraPageState extends State<cameraPage> {
                           },
                           child: Text("<", style: TextStyle(fontSize: 60),),
                         ),
-                      ),
-                      Text(outputString)
+                      )
                     ],
                   ),
                 )
@@ -95,17 +92,7 @@ class _cameraPageState extends State<cameraPage> {
                   splashColor: Colors.white,
                   splashRadius: 20,
                   iconSize: 45,
-                  onPressed: () async 
-                  {
-                    picurefile = await controler.takePicture();
-                    if (picurefile != null)
-                    {
-                      String text = await TextRegonizion.regonizion(picurefile!.path);
-                      setState(() {
-                        outputString = text;
-                      });
-                    }
-                  }, 
+                  onPressed: () {}, 
                   icon: Icon(Icons.camera_alt)),
               )
             )
